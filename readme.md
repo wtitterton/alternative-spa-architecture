@@ -1,0 +1,31 @@
+# Alternative SPA Architecture
+
+## Goal
+The goal is to apply some of the concepts outlined in [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) to the frontend. 
+
+## Outcomes
+- Decouple business logic from React/view layer
+- Increase testability (Test business logic independent of the framework. Reduce need for things like React testling libary)
+
+## Cornerstone Architecture 
+![Clean architecture!](./CleanArchitecture.jpeg "Clean architeture")
+
+### Presenters
+The presenter is responsible for creating the **view model**. This could invole transforming the data returned from the repository into something that makes sense for the view. This helps to simplify component markup as we can remove formatting and transformation logic. As well as simplifying conditional logic.
+
+### Repositories
+The Repository is responsible for managing and interacting with application state. It also has a responsibility to construct as **programmers model** based on **DTO** objects returned from any API calls.
+
+### Gateways
+The main purpose of a gate way is to abstract I/O processes, such as API calls, interaction with broswer apis like local storage. It can also be used to encapsulate third party dependencies.
+
+## Flow Diagram
+`Gateway <---DTO---> Repository <---PM---> Presenter <---VM---> Component`
+
+## Additional tools
+- Mobx/react-mobx (Aides communication between our app and the react libary)
+- Inversify IOC container 
+
+
+
+
