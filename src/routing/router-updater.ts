@@ -2,13 +2,12 @@ import { inject, injectable } from 'inversify'
 import { action, makeObservable } from 'mobx'
 import { RoutingState } from './routing-state'
 import { Routes } from './routes'
-import { Route } from 'navigo'
 
 @injectable()
 export class RouteUpdater {
   constructor(
-    @inject("RoutingState") private routingState: RoutingState,
-    @inject("Routes") private routes: Routes
+    @inject(RoutingState) private routingState: RoutingState,
+    @inject(Routes) private routes: Routes
   ) {
     makeObservable(this, {
       updateCurrentRoute: action,
