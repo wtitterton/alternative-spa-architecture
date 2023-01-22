@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { observer } from 'mobx-react'
 import { CurrentPagePresenter } from './current-page-presenter'
-import {Home} from './pages';
+import {Home, LoginRegistrationPage} from './pages';
 import { useInjection } from 'inversify-react';
 
 export const CurrentPage = observer((props: any) => {
@@ -24,7 +24,7 @@ export const CurrentPage = observer((props: any) => {
   return (
     <div>
       {currentPagePresenter.currentRouteId === 'loginLink' ? (
-        <div>Create the login and register page</div>
+        <div><LoginRegistrationPage /></div>
       ) : (
         <div>Create the navigation menu and content pages</div>
       )}
