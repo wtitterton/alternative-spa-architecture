@@ -24,14 +24,13 @@ export  class Router {
     return this.routingState.currentState.routeId
   }
 
-  registerRoutes = () => {
-    let routeConfig = this.routeRegistrar.extractRoutes(this.routes.routes)
+  registerRoutes = async () => {
+    let routeConfig = this.routeRegistrar.extractRoutes(this.routes.routes);
     this.routerGateway.registerRoutes(routeConfig)
   }
 
   goToId = async (routeId: string, params?: any, query?: any) => {
     let routePath = this.routeUpdater.findRoute(routeId).routeDef.path
-
     if (query) {
       routePath = routePath + '?' + query
     }

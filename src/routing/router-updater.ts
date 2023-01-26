@@ -33,7 +33,6 @@ export class RouteUpdater {
     const oldRouteId = this.routingState.currentState.routeId
     const routeChanged = oldRouteId !== routeId
     const targetRouteId = this.findRoute(routeId).routeId
-
     console.log('old route is ', oldRouteId)
     console.log('new route is ', targetRouteId)
     /* @ts-ignore */
@@ -47,6 +46,7 @@ export class RouteUpdater {
     const route = this.routes.routes.find((route) => {
       return route.routeId === routeId
     })
+
     return route || { routeId: 'loadingSpinner', routeDef: { path: '' } }
   }
 

@@ -7,12 +7,6 @@ export class Routes {
       routeId: 'homeLink',
       routeDef: {
         path: '/app/home'
-      },
-      onEnter: () => {
-        console.log('enter home')
-      },
-      onLeave: () => {
-        console.log('leave home')
       }
     },
     {

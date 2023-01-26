@@ -6,8 +6,8 @@ export const container = new Container({
   defaultScope: 'Transient'
 })
 
-container.bind<HttpGateway>("HttpGateway").to(HttpGateway)
-container.bind<RouterGateway>("RouterGateway").to(RouterGateway).inSingletonScope()
-container.bind<RoutingState>("RoutingState").to(RoutingState).inSingletonScope()
-container.bind<Router>("Router").to(Router).inSingletonScope()
-container.bind<Routes>("Routes").to(Routes).inSingletonScope()
+container.bind<HttpGateway>(HttpGateway).to(HttpGateway)
+container.bind<RouterGateway>(RouterGateway).to(RouterGateway).inSingletonScope()
+container.bind<RoutingState>(RoutingState).to(RoutingState).inSingletonScope()
+container.bind<Router>(Router).to(Router).inSingletonScope()
+container.bind<Routes>(Routes).to(Routes).inSingletonScope()

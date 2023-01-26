@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { observer } from 'mobx-react'
 import { CurrentPagePresenter } from './current-page-presenter'
-import {Home, LoginRegistrationPage} from './pages';
+import {Home } from './home';
+import {LoginRegistrationPage} from './login'
 import { useInjection } from 'inversify-react';
 
 export const CurrentPage = observer((props: any) => {
@@ -14,19 +15,23 @@ export const CurrentPage = observer((props: any) => {
   const renderedComponents = [
     {
       id: 'homeLink',
-      component: <Home key="homePage" />
+      component: <Home key="home" />
     },
-    {
-      id: 'booksLink',
-      component: <Home key="booksLink" />
-    }
+    // {
+    //   id: 'booksLink',
+    //   component: <Home key="booksLink" />
+    // }
   ]
+
+
   return (
     <div>
       {currentPagePresenter.currentRouteId === 'loginLink' ? (
         <div><LoginRegistrationPage /></div>
       ) : (
-        <div>Create the navigation menu and content pages</div>
+        <div>{renderedComponents.map((current) => {
+              return currentPagePresenter.currentRouteId === current.id && current.component
+            })}</div>
       )}
     </div>
   )

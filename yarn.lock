@@ -861,10 +861,10 @@ nanoid@^3.3.4:
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
   integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
 
-navigo@^8.11.1:
-  version "8.11.1"
-  resolved "https://registry.yarnpkg.com/navigo/-/navigo-8.11.1.tgz#aca756dbca40e2da2ae688a2a247ab4f070fcf4a"
-  integrity sha512-e3sc1UzakF+bWquC8/dbPCgo7LgPEW1ekgwb4pmEcl8tOc/I7lML8r7HBql+b0VRk7tJWTZqtkeObwJAVR1pxg==
+navigo@7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/navigo/-/navigo-7.0.0.tgz#f8f05aefc13a4e1a15a2748433cff8b9b0558a0b"
+  integrity sha512-QJcTsniU7hcNFvxQ/LFmrbeRvXuA1URUZ4M86x3Ub8V1NfY8PGErbmQf2JLIJeB1wd2bZepROziLBySJhYnyAA==
 
 node-emoji@^1.8.1:
   version "1.11.0"
