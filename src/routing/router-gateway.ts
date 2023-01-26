@@ -3,15 +3,14 @@ import Navigo from 'navigo'
 
 @injectable()
 export class RouterGateway {
-  navigo: Navigo = new Navigo("");
+  navigo
 
-  registerRoutes = async (routeConfig: any) => {
-    if (this.navigo) return new Promise((resolve) => setTimeout(resolve, 0))
+  registerRoutes = async (routeConfig) => {
+   if (this.navigo) return new Promise((resolve) => setTimeout(resolve, 0))
     let root = null
     let useHash = false
-    this.navigo = new Navigo(root ?? "", {
-       hash: useHash,
-    });
+    let hash = '#'
+    this.navigo = new Navigo(root, useHash, hash)
     this.navigo
       .on(routeConfig)
       .notFound(() => {})
