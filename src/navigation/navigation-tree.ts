@@ -1,11 +1,11 @@
 import 'reflect-metadata'
-import { injectable, inject } from 'inversify'
+import { injectable } from 'inversify'
 import TreeModel from 'tree-model'
 
 @injectable()
 export class NavigationTree {
      getTree() {
-    let tree = new TreeModel()
+    const tree = new TreeModel();
 
     let root = tree.parse({
       id: 'homeLink',

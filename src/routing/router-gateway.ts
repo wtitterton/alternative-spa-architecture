@@ -1,11 +1,11 @@
-import { inject, injectable } from 'inversify'
+import { injectable } from 'inversify'
 import Navigo from 'navigo'
 
 @injectable()
 export class RouterGateway {
-  navigo
+  navigo: any
 
-  registerRoutes = async (routeConfig) => {
+  registerRoutes = async (routeConfig: any) => {
    if (this.navigo) return new Promise((resolve) => setTimeout(resolve, 0))
     let root = null
     let useHash = false
