@@ -12,8 +12,8 @@ export const Navigation = observer((props: any) => {
       <div className="navigation-container">
         <>
           <div className="navigation-item" style={{ backgroundColor: '#5BCA06' }}>
-            {navigationPresenter.findCurrentNode().model.text}
-            {/* {navigationPresenter.findCurrentNode().model.id} */}
+            {navigationPresenter.findCurrentNode().model.text} {" > "}
+            {navigationPresenter.findCurrentNode().model.id}
           </div>
           {navigationPresenter.findCurrentNode().children.map((node: any, i: number) => {
             return node.model.type === "expand" ? <NavigationListExpandable key={i} node={node} /> : <NavigationList key={i} node={node} />
