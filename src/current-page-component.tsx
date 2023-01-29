@@ -4,9 +4,11 @@ import { CurrentPagePresenter } from './current-page-presenter'
 import {Home } from './home';
 import {LoginRegistrationPage} from './login'
 import { useInjection } from 'inversify-react';
+import { Navigation, NavigationPresenter } from './navigation';
 
 export const CurrentPage = observer((props: any) => {
   const currentPagePresenter = useInjection(CurrentPagePresenter);
+  const navigationPresenter = useInjection(NavigationPresenter);
 
   React.useEffect(() => {
     currentPagePresenter.bootstrap()
@@ -17,10 +19,10 @@ export const CurrentPage = observer((props: any) => {
       id: 'homeLink',
       component: <Home key="home" />
     },
-    // {
-    //   id: 'booksLink',
-    //   component: <Home key="booksLink" />
-    // }
+    {
+      id: 'booksLink',
+      component: <Home key="booksLink" />
+    }
   ]
 
 
@@ -29,9 +31,16 @@ export const CurrentPage = observer((props: any) => {
       {currentPagePresenter.currentRouteId === 'loginLink' ? (
         <div><LoginRegistrationPage /></div>
       ) : (
-        <div>{renderedComponents.map((current) => {
-              return currentPagePresenter.currentRouteId === current.id && current.component
-            })}</div>
+        <div className='container'>
+          <div className='left'>
+            <Navigation />
+          </div>
+          <div className='right'>
+            {renderedComponents.map((current) => {
+            return currentPagePresenter.currentRouteId === current.id && current.component
+          })}
+          </div>  
+        </div>
       )}
     </div>
   )
