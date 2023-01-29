@@ -5,6 +5,8 @@ import {Home } from './home';
 import {LoginRegistrationPage} from './login'
 import { useInjection } from 'inversify-react';
 import { Navigation, NavigationPresenter } from './navigation';
+import { AddBooks, Books } from './books';
+import { AddAuthors, Authors, Map, Policy } from './authors';
 
 export const CurrentPage = observer((props: any) => {
   const currentPagePresenter = useInjection(CurrentPagePresenter);
@@ -21,11 +23,31 @@ export const CurrentPage = observer((props: any) => {
     },
     {
       id: 'booksLink',
-      component: <Home key="booksLink" />
-    }
+      component: <Books key="booksLink" />
+    },
+    {
+      id: 'addBooksLink',
+      component: <AddBooks key="addBooksLink" />
+    },
+    {
+      id: 'authorsLink',
+      component: <Authors key="authorsLink" />
+    },
+    {
+      id: 'addAuthorsLink',
+      component: <AddAuthors key="addAuthorsLink" />
+    },
+    {
+      id: 'authorsPolicyLink',
+      component: <Policy key="authorsPolicyLink" />
+    },
+    {
+      id: 'authorsMapLink',
+      component: <Map key="authorsMapLink" />
+    },
   ]
 
-
+console.log(currentPagePresenter.currentRouteId);
   return (
     <div>
       {currentPagePresenter.currentRouteId === 'loginLink' ? (

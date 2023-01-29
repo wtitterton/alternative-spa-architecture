@@ -76,9 +76,14 @@ export class NavigationTree {
               ]
             },
             {
-              id: 'authorPolicyLink',
+              id: 'authorsPolicyLink',
               type: 'link',
               text: 'Author Policy'
+            },
+             {
+              id: 'authorsMapLink',
+              type: 'link',
+              text: 'Author Map'
             }
           ]
         }

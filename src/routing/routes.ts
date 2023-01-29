@@ -16,6 +16,36 @@ export class Routes {
       }
     },
     {
+      routeId: 'addBooksLink',
+      routeDef: {
+        path: '/app/books/add'
+      }
+    },
+    {
+      routeId: 'authorsLink',
+      routeDef: {
+        path: '/app/authors'
+      }
+    },
+    {
+      routeId: 'addAuthorsLink',
+      routeDef: {
+        path: '/app/authors/add'
+      }
+    },
+    {
+      routeId: 'authorsPolicyLink',
+      routeDef: {
+        path: '/app/authors/policy'
+      }
+    },
+    {
+      routeId: 'authorsMapLink',
+      routeDef: {
+        path: '/app/authors/map'
+      }
+    },
+     {
       routeId: 'loginLink',
       routeDef: {
         path: '/app/authentication/login'
