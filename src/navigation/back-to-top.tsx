@@ -12,7 +12,7 @@ export const BackToTop = observer(({node}: any) => {
         style={{ backgroundColor: '#2e91fc' }}
         onClick={() => {navigationPresenter.backToTop()}}
       >
-        back to top
+        &uarr; Top
       </div>
       
     </>
