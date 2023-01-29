@@ -1,4 +1,4 @@
-import { LazyServiceIdentifer, inject, injectable } from 'inversify'
+import { inject, injectable } from 'inversify'
 import { computed, makeObservable } from 'mobx'
 import { NavigationTree } from './navigation-tree'
 import { Router } from '../routing'
