@@ -5,6 +5,7 @@ import { NavigationPresenter } from './navigation-presenter'
 import { NavigationList } from './navigation-list'
 import { NavigationListExpandable } from './navigation-list-expandable'
 import { BackToTop } from './back-to-top'
+import { Logout } from './logout'
 export const Navigation = observer((props: any) => {
     const navigationPresenter = useInjection(NavigationPresenter);
   return (
@@ -22,7 +23,7 @@ export const Navigation = observer((props: any) => {
 
         {!navigationPresenter.isTop && <BackToTop />}
 
-        {/* <LogoutComponent /> */}
+        <Logout />
       </div>
     </>
   )
