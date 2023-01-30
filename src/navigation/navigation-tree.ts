@@ -25,14 +25,21 @@ export class NavigationTree {
                 {
                   id: 'addBooksLink',
                   type: 'link',
-                  text: 'Add Book'
+                  text: 'Add Book',
+                   children: [
+                    {
+                      id: 'booksLink',
+                      type: 'link',
+                      text: 'Books',
+                    }
+                  ]
                 }
               ]
             },
             {
               id: 'addBooksLink',
               type: 'link',
-              text: 'Add Book'
+              text: 'Add Book',
             }
           ]
         },
@@ -49,17 +56,26 @@ export class NavigationTree {
                 {
                   id: 'addAuthorsLink',
                   type: 'link',
-                  text: 'Add Author'
+                  text: 'Add Author',
+                  children: [
+                    {
+                       id: 'authorsLink',
+                       type: 'link',
+                       text: 'Authors',
+                    }
+                  ]
                 },
                 {
-                  id: 'authorPolicyLink',
+                  id: 'authorsPolicyLink',
                   type: 'link',
-                  text: 'Author Policy'
+                  text: 'Author Policy',
+                  children:[]
                 },
                 {
-                  id: 'mapLink',
+                  id: 'authorsMapLink',
                   type: 'link',
-                  text: 'View Map'
+                  text: 'View Map',
+                  children: []
                 }
               ]
             },
@@ -69,22 +85,22 @@ export class NavigationTree {
               text: 'Add Author',
               children: [
                 {
-                  id: 'mapLink',
+                  id: 'authorsMapLink',
                   type: 'link',
                   text: 'View Map'
+                },
+                {
+                  id: 'authorsPolicyLink',
+                  type: 'link',
+                  text: 'Author Policy'
                 }
               ]
-            },
-            {
-              id: 'authorsPolicyLink',
-              type: 'link',
-              text: 'Author Policy'
-            },
-             {
-              id: 'authorsMapLink',
-              type: 'link',
-              text: 'Author Map'
-            }
+            },  
+            // {
+            //   id: 'authorsMapLink',
+            //   type: 'link',
+            //   text: 'Authors Map'
+            // }
           ]
         }
       ]

@@ -10,6 +10,7 @@ export const NavigationList = observer(({node}: any) => {
       <div
         className="navigation-item"
         style={{ backgroundColor: '#2e91fc' }}
+        onClick={() => router.goToId(node.model.id)}
       >
         {node.model.text}
       </div>
