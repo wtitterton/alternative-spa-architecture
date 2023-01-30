@@ -67,7 +67,9 @@ body {
     width: 410px;
     margin: auto;
     padding: 20px;
-    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .login-register input[type='submit'] {
