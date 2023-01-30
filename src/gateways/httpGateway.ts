@@ -1,6 +1,7 @@
 import { injectable } from 'inversify'
+import { unsuccesfulResponse } from './errors'
 
-export interface HTTPResponse<T> {
+export interface HttpSuccesfulResponse<T> {
    success: boolean,
    result: T
 }
@@ -15,7 +16,7 @@ export class HttpGateway {
     return dto
   }
 
-  post = async<T, R> (path: string, requestDto: T): Promise<HTTPResponse<R>> => {
+  post = async<T, R> (path: string, requestDto: T): Promise<HttpSuccesfulResponse<R> | unsuccesfulResponse> => {
       const response = await fetch(`${this.API_URL}${path}`, {
         method: 'POST',
         body: JSON.stringify(requestDto),
@@ -23,7 +24,13 @@ export class HttpGateway {
           'Content-Type': 'application/json'
         }
       })
-      const responseDto = response.json()
+
+      const responseDto = await response.json();
+
+      if(!response.ok) {
+       throw  new unsuccesfulResponse(responseDto.result.message);
+      }
+
       return responseDto
   }
 }

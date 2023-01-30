@@ -1,7 +1,8 @@
 import { injectable, inject } from 'inversify'
 import { makeObservable, action } from 'mobx'
 import { Router } from '../routing'
-import { HTTPResponse, HttpGateway } from '../gateways'
+import {  HttpGateway, HttpSuccesfulResponse } from '../gateways'
+import { unsuccesfulResponse } from '../gateways/errors'
 
 export interface RegisterDto {
   email: string,
@@ -18,8 +19,11 @@ interface RegisterResult {
 export class AuthenticationRepository {
   constructor(@inject(HttpGateway) private dataGateway: HttpGateway,  @inject(Router) private router: Router ) {}
 
-  register = async (registerDto: RegisterDto): Promise<HTTPResponse<RegisterResult>> => {
-    return this.dataGateway.post<RegisterDto, RegisterResult>("register", registerDto)
+  register = async (registerDto: RegisterDto): Promise<HttpSuccesfulResponse<RegisterResult> | unsuccesfulResponse> => {
+   const response = await this.dataGateway.post<RegisterDto, RegisterResult>("register", registerDto);
+   console.log(response);
+   return response;
+    
   }
 
   logout = async () => {

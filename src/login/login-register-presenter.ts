@@ -35,13 +35,19 @@ export class LoginRegisterPresenter {
   register = async (registerDto: RegisterDto) => {
     try {
       validateInput(registrationSchema, registerDto)
-      this.authenticationRepository.register(registerDto);
-      this.email = "";
-      this.password = "";
+      await this.authenticationRepository.register(registerDto);
+      this.resetValues();
     } catch(error: any) {
       this.showValidationMessage = true;
       this.validationMessage = createMessageFromError(error)
     }
+  }
+
+  private resetValues() {
+    this.email = "";
+    this.password = "";
+    this.showValidationMessage = true;
+    this.validationMessage = []
   }
 
   setOption(option: Option) {
