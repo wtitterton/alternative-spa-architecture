@@ -1,9 +1,27 @@
 import { useInjection } from 'inversify-react'
 import { observer } from 'mobx-react'
 import { LoginRegisterPresenter } from './login-register-presenter';
+import { useState } from 'react';
+import { RegisterDto } from './authentication-repository';
+import { ErrorList } from '../shared';
 
 export const LoginRegistrationPage = observer((props: any) => {
     const loginRegisterPresenter = useInjection(LoginRegisterPresenter);
+
+    const {email, password, option, showValidationMessage, validationMessage: validationErrors} = loginRegisterPresenter
+
+    const [loginRegisterFormValues, setLoginRegisterFormValues] = useState<RegisterDto>({
+      email: email ?? "",
+      password: password ?? ""
+    })
+
+    const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setLoginRegisterFormValues({
+        ...loginRegisterFormValues,
+        [event.target.name]: event.target.value
+      })
+    }
+
     return (
         <>
       <div className="logo">
@@ -34,46 +52,46 @@ export const LoginRegistrationPage = observer((props: any) => {
       <div
         className="login-register"
         style={{
-          backgroundColor: loginRegisterPresenter.option === 'login' ? '#E4257D' : '#2E91FC'
+          backgroundColor: option === 'login' ? '#E4257D' : '#2E91FC'
         }}
       >
         <form
           className="login"
           onSubmit={(event) => {
             event.preventDefault()
-            if (loginRegisterPresenter.option === 'login') loginRegisterPresenter.login()
-            if (loginRegisterPresenter.option === 'register') loginRegisterPresenter.register()
+            if (option === 'login') loginRegisterPresenter.login()
+            if (option === 'register') loginRegisterPresenter.register(loginRegisterFormValues)
           }}
         >
           <label>
             <input
               type="text"
-              value={loginRegisterPresenter.email}
+              name="email"
+              value={loginRegisterFormValues.email}
               placeholder="Email"
-              onChange={(event) => {
-               loginRegisterPresenter.email = event.target.value
-              }}
+              onChange={handleOnChange}
             />
           </label>
           <label>
             <input
-              type="text"
-              value={loginRegisterPresenter.password}
+              type="password"
+              name="password"
+              value={loginRegisterFormValues.password}
               placeholder="Password"
-              onChange={(event) => {
-                loginRegisterPresenter.password = event.target.value
-              }}
+              onChange={handleOnChange}
             />
           </label>
-          {loginRegisterPresenter.option === 'login' ? (
+          {option === 'login' ? (
             <input type="submit" value="login" />
           ) : (
             <input type="submit" value="register" />
           )}
         </form>
 
-        <div className="validation-message">
-          {loginRegisterPresenter.showValidationMessage && loginRegisterPresenter.validationMessage}
+        <div className="validation-message"  style={{
+          backgroundColor: option === 'login' ? '#E4257D' : '#2E91FC'
+        }}>
+          {showValidationMessage && <ErrorList errors={validationErrors} />}
         </div>
       </div>
     </>

@@ -21,7 +21,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "reflect-metadata": "^0.1.13",
-    "tree-model": "^1.0.7"
+    "tree-model": "^1.0.7",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/jest": "^29.4.0",

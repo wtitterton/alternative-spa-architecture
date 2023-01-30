@@ -1,5 +1,10 @@
 import { injectable } from 'inversify'
 
+export interface HTTPResponse<T> {
+   success: boolean,
+   result: T
+}
+
 @injectable()
 export class HttpGateway {
   API_URL = "https://api.logicroom.co/secure-api/wftitterton@gmail.com/"
@@ -10,15 +15,15 @@ export class HttpGateway {
     return dto
   }
 
-  post = async<T> (path: string, requestDto: T) => {
-    const response = await fetch(`${this.API_URL}${path}`, {
-      method: 'POST',
-      body: JSON.stringify(requestDto),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    const responseDto = response.json()
-    return responseDto
+  post = async<T, R> (path: string, requestDto: T): Promise<HTTPResponse<R>> => {
+      const response = await fetch(`${this.API_URL}${path}`, {
+        method: 'POST',
+        body: JSON.stringify(requestDto),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      const responseDto = response.json()
+      return responseDto
   }
 }

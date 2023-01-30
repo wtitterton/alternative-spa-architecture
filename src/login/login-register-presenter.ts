@@ -1,19 +1,19 @@
 import { injectable, inject } from 'inversify'
-import { AuthenticationRepository } from './'
+import { AuthenticationRepository, RegisterDto } from './'
 import { Router } from '../routing'
 import { makeObservable, observable, runInAction } from 'mobx'
+import { createMessageFromError, validateInput } from '../utils'
+import { registrationSchema } from './registration-validation-schema'
+
+type Option = "login" | "register"
 
 @injectable()
 export class LoginRegisterPresenter {
-  email = ''
-
-  password = ''
-
-  option = 'login'
-
-  showValidationMessage = false
-
-  validationMessage = ''
+  email: string | null = null
+  password: string | null = null
+  option: Option = "login"
+  showValidationMessage: boolean = false
+  validationMessage: string[] = []
 
   constructor(
     @inject(AuthenticationRepository) private authenticationRepository: AuthenticationRepository,
@@ -32,11 +32,19 @@ export class LoginRegisterPresenter {
     this.router.goToId('homeLink');
   }
 
-  register = async () => {
-    console.log(this)
+  register = async (registerDto: RegisterDto) => {
+    try {
+      validateInput(registrationSchema, registerDto)
+      this.authenticationRepository.register(registerDto);
+      this.email = "";
+      this.password = "";
+    } catch(error: any) {
+      this.showValidationMessage = true;
+      this.validationMessage = createMessageFromError(error)
+    }
   }
 
-  setOption(option: string) {
+  setOption(option: Option) {
     runInAction(() => {
           this.option = option
         })
