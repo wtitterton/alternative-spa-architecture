@@ -7,7 +7,7 @@ import { Router } from '../routing'
 export class NavigationPresenter {
   constructor(
     @inject(NavigationTree) private navigationTree: NavigationTree,
-    @inject(Router) private router: Router
+    @inject(Router) private router: Router,
   ) {
     makeObservable(this, {
       currentSelectedNavigationNode: computed,
@@ -47,7 +47,7 @@ export class NavigationPresenter {
 
   findCurrentNode = () => {
     var self = this
-    return this.navigationTree.getTree().all(function (node) {
+    return this.navigationTree.getTree().all(function (node: any) {
       return node.model.id === self.router.currentRouteId
     })[0]
   }
