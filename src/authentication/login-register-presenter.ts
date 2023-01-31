@@ -1,5 +1,5 @@
 import { injectable, inject } from 'inversify'
-import { AuthenticationRepository, RegisterDto } from './'
+import { AuthenticationRepository, LoginRegisterDto } from '.'
 import { Router } from '../routing'
 import { makeObservable, observable, runInAction } from 'mobx'
 import { createMessageFromError, validateInput } from '../utils'
@@ -28,14 +28,22 @@ export class LoginRegisterPresenter {
     })
   }
 
-  login = async () => {
-    this.router.goToId('homeLink');
+  public login = async (loginCredentials: LoginRegisterDto) => {
+    try {
+      validateInput(registrationSchema, loginCredentials);
+      await this.authenticationRepository.login(loginCredentials);
+      this.resetValues();
+      this.router.goToId('homeLink');
+    } catch(error: any) {
+      this.showValidationMessage = true;
+      this.validationMessage = createMessageFromError(error);
+    }
   }
 
-  register = async (registerDto: RegisterDto) => {
+  public register = async (registerCredentials: LoginRegisterDto) => {
     try {
-      validateInput(registrationSchema, registerDto)
-      await this.authenticationRepository.register(registerDto);
+      validateInput(registrationSchema, registerCredentials)
+      await this.authenticationRepository.register(registerCredentials);
       this.resetValues();
     } catch(error: any) {
       this.showValidationMessage = true;

@@ -1,2 +1,2 @@
 export * from "./home"
-export * from '../login/login-registration-page'
+export * from '../authentication/login-registration-page'
