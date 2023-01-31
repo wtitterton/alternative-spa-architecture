@@ -2,7 +2,7 @@ import * as React from 'react'
 import { observer } from 'mobx-react'
 import { CurrentPagePresenter } from './current-page-presenter'
 import {Home } from './home';
-import {LoginRegistrationPage} from './login'
+import {LoginRegistrationPage} from './authentication'
 import { useInjection } from 'inversify-react';
 import { Navigation, NavigationPresenter } from './navigation';
 import { AddBooks, Books } from './books';

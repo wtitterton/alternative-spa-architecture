@@ -2,7 +2,7 @@ import { useInjection } from 'inversify-react'
 import { observer } from 'mobx-react'
 import { LoginRegisterPresenter } from './login-register-presenter';
 import { useState } from 'react';
-import { RegisterDto } from './authentication-repository';
+import { LoginRegisterDto } from './authentication-repository';
 import { ErrorList } from '../shared';
 
 export const LoginRegistrationPage = observer((props: any) => {
@@ -10,7 +10,7 @@ export const LoginRegistrationPage = observer((props: any) => {
 
     const {email, password, option, showValidationMessage, validationMessage: validationErrors} = loginRegisterPresenter
 
-    const [loginRegisterFormValues, setLoginRegisterFormValues] = useState<RegisterDto>({
+    const [loginRegisterFormValues, setLoginRegisterFormValues] = useState<LoginRegisterDto>({
       email: email ?? "",
       password: password ?? ""
     })
@@ -59,7 +59,7 @@ export const LoginRegistrationPage = observer((props: any) => {
           className="login"
           onSubmit={(event) => {
             event.preventDefault()
-            if (option === 'login') loginRegisterPresenter.login()
+            if (option === 'login') loginRegisterPresenter.login(loginRegisterFormValues)
             if (option === 'register') loginRegisterPresenter.register(loginRegisterFormValues)
           }}
         >

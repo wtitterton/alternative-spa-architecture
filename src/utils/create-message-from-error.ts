@@ -1,16 +1,14 @@
 import { ValidationError } from "yup"
-import { unsuccesfulResponse } from "../gateways/errors";
+import { UnsuccesfulResponse } from "../gateways/errors";
 
 export const createMessageFromError = (error: any): string[] => {
     if(error instanceof ValidationError) {
        return error.errors
     }
 
-    if(error instanceof unsuccesfulResponse) {
+    if(error instanceof UnsuccesfulResponse) {
         return [error.message]
     }
 
-    console.log(error);
-
-    return []
+    return ["Something went wrong!"]
 }
