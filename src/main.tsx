@@ -17,6 +17,5 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Provider container={container}>
       <App />
     </Provider>
-    
   </React.StrictMode>,
 )
