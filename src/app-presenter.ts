@@ -5,7 +5,7 @@ import { makeObservable, computed } from 'mobx'
 import { injectable } from 'inversify'
 
 @injectable()
-export class CurrentPagePresenter {
+export class AppPresenter {
   loading: boolean = false;
 
   constructor(

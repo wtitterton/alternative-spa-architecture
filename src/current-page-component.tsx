@@ -1,19 +1,18 @@
 import * as React from 'react'
 import { observer } from 'mobx-react'
-import { CurrentPagePresenter } from './current-page-presenter'
+import { AppPresenter } from './app-presenter'
 import {Home } from './home';
 import {LoginRegistrationPage} from './authentication'
 import { useInjection } from 'inversify-react';
-import { Navigation, NavigationPresenter } from './navigation';
+import { Navigation } from './navigation';
 import { AddBooks, Books } from './books';
 import { AddAuthors, Authors, Map, Policy } from './authors';
 
 export const CurrentPage = observer((props: any) => {
-  const currentPagePresenter = useInjection(CurrentPagePresenter);
-  const navigationPresenter = useInjection(NavigationPresenter);
+  const appPresenter = useInjection(AppPresenter);
 
   React.useEffect(() => {
-    currentPagePresenter.bootstrap()
+    appPresenter.bootstrap()
   })
 
   const renderedComponents = [
@@ -47,10 +46,10 @@ export const CurrentPage = observer((props: any) => {
     },
   ]
 
-console.log(currentPagePresenter.currentRouteId);
+
   return (
     <div>
-      {currentPagePresenter.currentRouteId === 'loginLink' ? (
+      {appPresenter.currentRouteId === 'loginLink' ? (
         <div><LoginRegistrationPage /></div>
       ) : (
         <div className='container'>
@@ -59,7 +58,7 @@ console.log(currentPagePresenter.currentRouteId);
           </div>
           <div className='right'>
             {renderedComponents.map((current) => {
-            return currentPagePresenter.currentRouteId === current.id && current.component
+            return appPresenter.currentRouteId === current.id && current.component
           })}
           </div>  
         </div>
