@@ -45,6 +45,9 @@ export class LoginRegisterPresenter {
       validateInput(registrationSchema, registerCredentials)
       await this.authenticationRepository.register(registerCredentials);
       this.resetValues();
+      // could do somethin like 
+      this.showValidationMessage = true;
+      this.validationMessage = ["succesfully registered"]
     } catch(error: any) {
       this.showValidationMessage = true;
       this.validationMessage = createMessageFromError(error)
