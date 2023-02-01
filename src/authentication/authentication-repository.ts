@@ -1,7 +1,6 @@
 import { injectable, inject } from 'inversify'
 import { Router } from '../routing'
-import {  HttpGateway } from '../gateways'
-import { UnsuccesfulResponse } from '../gateways/errors'
+import {  HttpGateway } from '../core'
 import { UserModel } from './user-model'
 
 
