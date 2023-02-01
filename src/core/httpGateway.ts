@@ -1,5 +1,6 @@
-import { injectable } from 'inversify'
+import { inject, injectable } from 'inversify'
 import { UnsuccesfulResponse } from './errors'
+import { Config } from './config'
 
 export interface HttpSuccesfulResponse<T> {
    success: boolean,
@@ -8,16 +9,16 @@ export interface HttpSuccesfulResponse<T> {
 
 @injectable()
 export class HttpGateway {
-  API_URL = "https://api.logicroom.co/secure-api/wftitterton@gmail.com/"
+  constructor(@inject(Config) private config: Config) {}
 
   get = async<T> (path: string): Promise<T> => {
-    const response = await fetch(`${this.API_URL}${path}`)
+    const response = await fetch(`${this.config.getApiUrl()}${path}`)
     const dto = response.json()
     return dto
   }
 
   post = async<T, R> (path: string, requestDto: T): Promise<HttpSuccesfulResponse<R>> => {
-      const response = await fetch(`${this.API_URL}${path}`, {
+      const response = await fetch(`${this.config.getApiUrl()}${path}`, {
         method: 'POST',
         body: JSON.stringify(requestDto),
         headers: {

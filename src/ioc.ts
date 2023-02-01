@@ -1,5 +1,5 @@
 import { Container } from 'inversify'
-import {HttpGateway} from './gateways';
+import {HttpGateway} from './core';
 import {RoutingState, Router, RouterGateway, Routes} from './routing'
 import { UserModel } from './authentication';
 

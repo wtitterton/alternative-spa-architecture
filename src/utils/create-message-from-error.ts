@@ -1,5 +1,5 @@
 import { ValidationError } from "yup"
-import { UnsuccesfulResponse } from "../gateways/errors";
+import { UnsuccesfulResponse } from "../core";
 
 export const createMessageFromError = (error: any): string[] => {
     if(error instanceof ValidationError) {
